@@ -7,7 +7,7 @@
 ### General settings
 
 1. Get API keys: [@BotFather](https://t.me/BotFather), [Gemini](https://ai.google.dev/), [Ragie](https://www.ragie.ai/)
-2. Connect knowledge base
+2. Connect knowledge base at [Ragie.ai](https://www.ragie.ai/)
 3. Edit `.env`
 4. Edit config.py
 5. Deploy
@@ -29,7 +29,7 @@ Settings to edit in `config.py`
 
 ### Bot usage
 
-1. Disable /setprivacy in [@BotFather](https://t.me/BotFather)
+1. Disable `/setprivacy` in [@BotFather](https://t.me/BotFather)
 2. Add [@tradingx_knowledge_bot](https://t.me/tradingx_knowledge_bot) to the group
 3. Bot only answer in you mention him.
 
@@ -49,3 +49,9 @@ Example: `@tradingx_knowledge_bot Какую биржу выбрать?`
 [Railway](https://railway.com/) \
 [porter](https://cloud.porter.run/) \
 [DigitalOcean](https://m.do.co/c/58a27c657ed8)
+
+## Vector DB
+
+[Qdrant](https://qdrant.tech/) \
+[LanceDB](https://lancedb.com/) \
+[supabase](https://supabase.com/modules/vector)
