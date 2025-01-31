@@ -1,13 +1,12 @@
 import asyncio
+import random
 from typing import TYPE_CHECKING
 
-from config import REWRITE_PROMPT, bot
+from answers import ERROR_MSG, FORBIDDEN_PEOPLE, ON_MSG, PRIVATE_MESSAGES
+from config import bot
 from services import (
-    answer_question,
     check_auth,
-    retrieve_data,
-    rewrite_prompt,
-    send_answer,
+    process_query,
 )
 
 if TYPE_CHECKING:
@@ -17,10 +16,7 @@ if TYPE_CHECKING:
 # /start
 @bot.message_handler(commands=["start"])
 async def handle_start(message: "Message") -> None:
-    await bot.send_message(
-        message.chat.id,
-        "You are good to go!",
-    )
+    await bot.send_message(message.chat.id, random.choice(ON_MSG))  # noqa: S311
 
 
 # /info
@@ -32,30 +28,33 @@ async def handle_info(message: "Message") -> None:
 # Text handler
 @bot.message_handler(content_types=["text"])
 async def handle_message(message: "Message") -> None:
-    if message.chat.type not in ("group", "supergroup"):
-        await bot.send_message(message.chat.id, "Я не веду приватных бесед.")
-        return
-
-    if " " not in message.text:
-        return
-
-    username = await bot.get_me()
-    bot_username, query = message.text.strip().split(" ", maxsplit=1)
-    if bot_username == f"@{username.username}":
+    try:
         user = check_auth(message.from_user.id)
-        if not user:
-            await bot.reply_to(
-                message,
-                "Мне не разрешают общаться c незнакомыми людьми.",
-            )
+
+        if message.chat.type not in ("group", "supergroup") and not user:
+            await bot.send_message(message.chat.id, random.choice(PRIVATE_MESSAGES))  # noqa: S311
             return
 
-        if user:
-            if REWRITE_PROMPT:
-                query = await rewrite_prompt(query)
-            retrievals = await retrieve_data(query)  # Какую биржу выбрать?
-            answer = await answer_question(query=query, retrievals=retrievals)
-            await send_answer(message=message, answer=answer)
+        if message.chat.type == "private" and user:
+            query = message.text.strip()
+            await process_query(message=message, query=query)
+            return
+
+        if " " not in message.text:
+            return
+
+        username = await bot.get_me()
+        bot_username, query = message.text.strip().split(" ", maxsplit=1)
+        if bot_username == f"@{username.username}":
+            if not user:
+                await bot.reply_to(message, random.choice(FORBIDDEN_PEOPLE))  # noqa: S311
+                return
+
+            if user:
+                await process_query(message=message, query=query)
+
+    except Exception:
+        await bot.reply_to(message, random.choice(ERROR_MSG))  # noqa: S311
 
 
 if __name__ == "__main__":

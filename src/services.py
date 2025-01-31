@@ -6,7 +6,15 @@ from ragie import Ragie
 from telebot.util import smart_split
 from telegramify_markdown import markdownify
 
-from config import AUTH_LIST, GEMINI_MODEL, SAFETY_SETTINGS, Settings, bot, client
+from config import (
+    AUTH_LIST,
+    GEMINI_MODEL,
+    REWRITE_PROMPT,
+    SAFETY_SETTINGS,
+    Settings,
+    bot,
+    client,
+)
 from prompts import QUERY_REWRITE_SYSTEM_INSTRUCTION, RAG_SYSTEM_INSTRUCTION
 
 if TYPE_CHECKING:
@@ -77,6 +85,14 @@ async def send_answer(message: "Message", answer: str) -> None:
             await asyncio.sleep(1)
     else:
         await bot.reply_to(message, answer_md, parse_mode="MarkdownV2")
+
+
+async def process_query(message: "Message", query: str) -> None:
+    if REWRITE_PROMPT:
+        query = await rewrite_prompt(query)
+    retrievals = await retrieve_data(query)  # Какую биржу выбрать?
+    answer = await answer_question(query=query, retrievals=retrievals)
+    await send_answer(message=message, answer=answer)
 
 
 def check_auth(user_id: int) -> bool:
