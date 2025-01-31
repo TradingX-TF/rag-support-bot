@@ -30,7 +30,7 @@ Settings to edit in `config.py`
 ### Bot usage
 
 1. Disable /setprivacy in [@BotFather](https://t.me/BotFather)
-2. Add [@tradingx_knowledge_bot](t.me/tradingx_knowledge_bot) to the group
+2. Add [@tradingx_knowledge_bot](https://t.me/tradingx_knowledge_bot) to the group
 3. Bot only answer in you mention him.
 
 Example: `@tradingx_knowledge_bot Какую биржу выбрать?`
