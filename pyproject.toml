@@ -82,7 +82,7 @@ select = [
   "PGH",   # pygrep-hooks
   "DOC",   # pydoclint
 ]
-ignore = []
+ignore = ["S311"]
 exclude = []
 
 [tool.ruff.format]
