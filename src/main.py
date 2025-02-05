@@ -2,8 +2,15 @@ import asyncio
 import random
 from typing import TYPE_CHECKING
 
-from answers import ERROR_MSG, FORBIDDEN_PEOPLE, ON_MSG, PRIVATE_MESSAGES
+from answers import (
+    EMPTY_RETRIEVAL,
+    ERROR_MSG,
+    FORBIDDEN_PEOPLE,
+    ON_MSG,
+    PRIVATE_MESSAGES,
+)
 from config import bot
+from exceptions import EmptyRetrievalError
 from services import (
     check_auth,
     process_query,
@@ -16,7 +23,7 @@ if TYPE_CHECKING:
 # /start
 @bot.message_handler(commands=["start"])
 async def handle_start(message: "Message") -> None:
-    await bot.send_message(message.chat.id, random.choice(ON_MSG))  # noqa: S311
+    await bot.send_message(message.chat.id, random.choice(ON_MSG))
 
 
 # /info
@@ -32,7 +39,7 @@ async def handle_message(message: "Message") -> None:
         user = check_auth(message.from_user.id)
 
         if message.chat.type not in ("group", "supergroup") and not user:
-            await bot.send_message(message.chat.id, random.choice(PRIVATE_MESSAGES))  # noqa: S311
+            await bot.send_message(message.chat.id, random.choice(PRIVATE_MESSAGES))
             return
 
         if message.chat.type == "private" and user:
@@ -47,14 +54,15 @@ async def handle_message(message: "Message") -> None:
         bot_username, query = message.text.strip().split(" ", maxsplit=1)
         if bot_username == f"@{username.username}":
             if not user:
-                await bot.reply_to(message, random.choice(FORBIDDEN_PEOPLE))  # noqa: S311
+                await bot.reply_to(message, random.choice(FORBIDDEN_PEOPLE))
                 return
 
             if user:
                 await process_query(message=message, query=query)
-
+    except EmptyRetrievalError:
+        await bot.reply_to(message, random.choice(EMPTY_RETRIEVAL))
     except Exception:
-        await bot.reply_to(message, random.choice(ERROR_MSG))  # noqa: S311
+        await bot.reply_to(message, random.choice(ERROR_MSG))
 
 
 if __name__ == "__main__":
