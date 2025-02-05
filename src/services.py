@@ -7,14 +7,13 @@ from telebot.util import smart_split
 from telegramify_markdown import markdownify
 
 from config import (
-    AUTH_LIST,
     GEMINI_MODEL,
-    REWRITE_PROMPT,
     SAFETY_SETTINGS,
-    Settings,
     bot,
     client,
+    settings,
 )
+from exceptions import EmptyRetrievalError
 from prompts import QUERY_REWRITE_SYSTEM_INSTRUCTION, RAG_SYSTEM_INSTRUCTION
 
 if TYPE_CHECKING:
@@ -27,7 +26,7 @@ async def rewrite_prompt(query: str) -> str:
     Original query: {query}
     """
     response = await client.aio.models.generate_content(
-        model="models/gemini-1.5-flash-latest",
+        model="gemini-2.0-flash",
         contents=query_rewrite_prompt,
         config=types.GenerateContentConfig(
             system_instruction=QUERY_REWRITE_SYSTEM_INSTRUCTION,
@@ -36,11 +35,14 @@ async def rewrite_prompt(query: str) -> str:
             max_output_tokens=8192,
         ),
     )
+    if response.text is None:
+        msg = "Empty response"
+        raise ValueError(msg)
     return response.text
 
 
 async def retrieve_data(query: str) -> list:
-    async with Ragie(auth=Settings.RAGIE_API_KEY) as s:
+    async with Ragie(auth=settings.RAGIE_API_KEY) as s:
         res = s.retrievals.retrieve(
             request={
                 "query": query,
@@ -50,6 +52,9 @@ async def retrieve_data(query: str) -> list:
     chunk_text = []
     for _i, text in enumerate(res.scored_chunks):
         chunk_text.append(text.text)
+    if not chunk_text:
+        msg = "No retrievals for query"
+        raise EmptyRetrievalError(msg)
     return chunk_text
 
 
@@ -72,6 +77,9 @@ async def answer_question(query: str, retrievals: list) -> str:
             max_output_tokens=8192,
         ),
     )
+    if response.text is None:
+        msg = "Empty response"
+        raise ValueError(msg)
     return response.text
 
 
@@ -88,7 +96,7 @@ async def send_answer(message: "Message", answer: str) -> None:
 
 
 async def process_query(message: "Message", query: str) -> None:
-    if REWRITE_PROMPT:
+    if settings.REWRITE_PROMPT:
         query = await rewrite_prompt(query)
     retrievals = await retrieve_data(query)  # Какую биржу выбрать?
     answer = await answer_question(query=query, retrievals=retrievals)
@@ -96,4 +104,4 @@ async def process_query(message: "Message", query: str) -> None:
 
 
 def check_auth(user_id: int) -> bool:
-    return str(user_id) in AUTH_LIST
+    return str(user_id) in settings.AUTH_LIST
