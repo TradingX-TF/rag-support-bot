@@ -15,7 +15,7 @@ class Settings:
     GEMINI_API_KEY = os.environ["GOOGLE_API_KEY"]
     TG_API_TOKEN = os.environ["TG_API_TOKEN"]
     AUTH_LIST = os.environ["AUTH_LIST"].split(",")
-    SENTRY_DSN = os.environ["SENTRY_DSN"]
+    SENTRY_DSN = os.environ.get("SENTRY_DSN")
     REWRITE_PROMPT = False
 
 
