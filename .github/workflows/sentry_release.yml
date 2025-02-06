@@ -1,0 +1,20 @@
+name: "Release Tracking for Sentry"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sentry Release
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - uses: getsentry/action-release@v1.10.1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}

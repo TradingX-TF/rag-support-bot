@@ -1,6 +1,7 @@
 FROM python:3.12-alpine
 ENV ENV=PROD
 ENV PYTHONUNBUFFERED=1 \
+    SENTRY_ENVIRONMENT=${ENV} \
     PATH="/root/.local/bin:${PATH}"
 WORKDIR /app
 COPY pyproject.toml poetry.lock ./
