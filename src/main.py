@@ -2,6 +2,8 @@ import asyncio
 import random
 from typing import TYPE_CHECKING
 
+import sentry_sdk
+
 from answers import (
     EMPTY_RETRIEVAL,
     ERROR_MSG,
@@ -9,7 +11,7 @@ from answers import (
     ON_MSG,
     PRIVATE_MESSAGES,
 )
-from config import bot
+from config import bot, settings
 from exceptions import EmptyRetrievalError
 from services import (
     check_auth,
@@ -18,6 +20,14 @@ from services import (
 
 if TYPE_CHECKING:
     from telebot.types import Message
+
+
+sentry_sdk.init(
+    dsn=settings.SENTRY_DSN,
+    send_default_pii=True,
+    traces_sample_rate=1.0,
+    enable_tracing=True,
+)
 
 
 # /start
@@ -61,7 +71,8 @@ async def handle_message(message: "Message") -> None:
                 await process_query(message=message, query=query)
     except EmptyRetrievalError:
         await bot.reply_to(message, random.choice(EMPTY_RETRIEVAL))
-    except Exception:
+    except Exception as e:
+        sentry_sdk.capture_exception(e)
         await bot.reply_to(message, random.choice(ERROR_MSG))
 
 
