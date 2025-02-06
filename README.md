@@ -6,7 +6,7 @@
 
 ### General settings
 
-1. Get API keys: [@BotFather](https://t.me/BotFather), [Gemini](https://ai.google.dev/), [Ragie](https://www.ragie.ai/)
+1. Get API keys: [@BotFather](https://t.me/BotFather), [Gemini](https://ai.google.dev/), [Ragie](https://www.ragie.ai/), [Sentry](https:/sentry.io/)
 2. Connect knowledge base at [Ragie.ai](https://www.ragie.ai/)
 3. Edit `.env`
 4. Edit config.py
@@ -18,6 +18,7 @@ Example of `.env` file:
 GOOGLE_API_KEY=
 RAGIE_API_KEY=
 TG_API_TOKEN=
+SENTRY_DSN=
 AUTH_LIST=123,456
 ```
 
