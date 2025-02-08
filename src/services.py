@@ -2,9 +2,16 @@ import asyncio
 from typing import TYPE_CHECKING
 
 from google.genai import types
+from google.genai.errors import ClientError, ServerError
 from ragie import Ragie
 from telebot.util import smart_split
 from telegramify_markdown import markdownify
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_fixed,
+)
 
 from config import (
     GEMINI_MODEL,
@@ -20,6 +27,14 @@ if TYPE_CHECKING:
     from telebot.types import Message
 
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_fixed(30),
+    retry=retry_if_exception_type(
+        (ServerError, ClientError),
+    ),
+    reraise=False,
+)
 async def rewrite_prompt(query: str) -> str:
     query_rewrite_prompt = f"""
     Return only rewritten query and only one.
@@ -58,6 +73,14 @@ async def retrieve_data(query: str) -> list:
     return chunk_text
 
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_fixed(30),
+    retry=retry_if_exception_type(
+        (ServerError, ClientError),
+    ),
+    reraise=False,
+)
 async def answer_question(query: str, retrievals: list) -> str:
     prompt = f"""
     User asks: {query}
