@@ -31,10 +31,10 @@ Settings to edit in `config.py`
 ### Bot usage
 
 1. Disable `/setprivacy` in [@BotFather](https://t.me/BotFather)
-2. Add [@tradingx_knowledge_bot](https://t.me/tradingx_knowledge_bot) to the group
+2. Add `@your_telegram_bot` to the group
 3. Bot only answer if you mention him.
 
-Example: `@tradingx_knowledge_bot Какую биржу выбрать?`
+Example: `@your_telegram_bot Какую биржу выбрать?`
 
 ## Docs
 
@@ -42,6 +42,8 @@ Example: `@tradingx_knowledge_bot Какую биржу выбрать?`
 [Google Gen AI SDK](https://github.com/googleapis/python-genai) \
 [telegramify_markdown](https://github.com/sudoskys/telegramify-markdown) \
 [Ragie](https://github.com/ragieai/ragie-python)
+[Sentry](https://docs.sentry.io/platforms/python/)
+[Tenacity](https://tenacity.readthedocs.io/en/latest/)
 
 ## Useful links
 
@@ -59,7 +61,8 @@ Example: `@tradingx_knowledge_bot Какую биржу выбрать?`
 [LanceDB](https://lancedb.com/) \
 [supabase](https://supabase.com/modules/vector) \
 [Pinecone](https://www.pinecone.io/) \
-[Chroma](https://www.trychroma.com/)
+[Chroma](https://www.trychroma.com/) \
+[Neon x pgvector](https://neon.tech/)
 
 ### RAG
 
