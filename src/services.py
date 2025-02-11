@@ -61,6 +61,7 @@ async def retrieve_data(query: str) -> list:
         res = s.retrievals.retrieve(
             request={
                 "query": query,
+                "top_k": 12,
                 "rerank": True,
             },
         )
