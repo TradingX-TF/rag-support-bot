@@ -41,8 +41,8 @@ Example: `@your_telegram_bot Какую биржу выбрать?`
 [pyTelegramBotAPI](https://pytba.readthedocs.io/en/latest/) \
 [Google Gen AI SDK](https://github.com/googleapis/python-genai) \
 [telegramify_markdown](https://github.com/sudoskys/telegramify-markdown) \
-[Ragie](https://github.com/ragieai/ragie-python)
-[Sentry](https://docs.sentry.io/platforms/python/)
+[Ragie](https://github.com/ragieai/ragie-python) \
+[Sentry](https://docs.sentry.io/platforms/python/) \
 [Tenacity](https://tenacity.readthedocs.io/en/latest/)
 
 ## Useful links
