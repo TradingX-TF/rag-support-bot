@@ -481,17 +481,18 @@ requests = ["requests (>=2.20.0,<3.0.0.dev0)"]
 
 [[package]]
 name = "google-genai"
-version = "1.3.0"
+version = "1.5.0"
 description = "GenAI Python SDK"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "google_genai-1.3.0-py3-none-any.whl", hash = "sha256:daa8934addb701ff5863d80f5eed278b33cac5dcb41e8eba9363fce8827c308b"},
-    {file = "google_genai-1.3.0.tar.gz", hash = "sha256:7b365a767474becc899bb2f1a38bcdc4967f20645cbf9b7781bd38ad1a59c25b"},
+    {file = "google_genai-1.5.0-py3-none-any.whl", hash = "sha256:0ad433836a402957a967ccd57cbab7768325d28966a8556771974ae1c018be59"},
+    {file = "google_genai-1.5.0.tar.gz", hash = "sha256:83fcfc4956ad32ecea1fda37d8f3f7cbadbdeebd2310f2a55bc7564a2f1d459f"},
 ]
 
 [package.dependencies]
+anyio = ">=4.8.0,<5.0.0dev"
 google-auth = ">=2.14.1,<3.0.0dev"
 httpx = ">=0.28.1,<1.0.0dev"
 pydantic = ">=2.0.0,<3.0.0dev"
@@ -1456,7 +1457,7 @@ files = [
 
 [package.dependencies]
 greenlet = [
-    {version = "!=0.4.17", optional = true, markers = "python_version < \"3.14\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\") or extra == \"asyncio\""},
+    {version = "!=0.4.17", markers = "python_version < \"3.14\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\")"},
     {version = "!=0.4.17", optional = true, markers = "python_version < \"3.14\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\") or extra == \"asyncio\""},
 ]
 typing-extensions = ">=4.6.0"
@@ -1488,14 +1489,14 @@ sqlcipher = ["sqlcipher3_binary"]
 
 [[package]]
 name = "telegramify-markdown"
-version = "0.4.1"
+version = "0.5.0"
 description = "Makes it easy to send Markdown in Telegram MarkdownV2 style"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "telegramify_markdown-0.4.1-py3-none-any.whl", hash = "sha256:377fe329b4504941e503a6445ef4088aaf338355d33d5bb961c761964431f9dc"},
-    {file = "telegramify_markdown-0.4.1.tar.gz", hash = "sha256:4db5b35b43a101e13e6c6ccc1e29ce0312d724b505fe7f7495587315101e6740"},
+    {file = "telegramify_markdown-0.5.0-py3-none-any.whl", hash = "sha256:6f66b7029c0eba268fed5f9daf9216f56c588c6202dd591ff572f7df0d318f2f"},
+    {file = "telegramify_markdown-0.5.0.tar.gz", hash = "sha256:70e6eff7e341e6e9c8818fa1ec53a4e25e4f5e3ef50856d7772760fc6b7a4066"},
 ]
 
 [package.dependencies]
@@ -1848,4 +1849,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "8d6acdeb84e52773fb2b99eb39a8f26606eda75397a108aa0638d8a4b6ede1f7"
+content-hash = "152efa92fcca30fd068387552d2116d609158bec5407fc49f7462a767b16dee8"
