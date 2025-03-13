@@ -21,8 +21,10 @@ class UsersOrm(Base):
 
 
 sync_engine = create_engine(settings.DATABASE_URL, echo=False)
-Base.metadata.create_all(sync_engine, checkfirst=True)
-sync_engine.dispose()
+try:
+    Base.metadata.create_all(sync_engine, checkfirst=True)
+finally:
+    sync_engine.dispose()
 
 
 engine = create_async_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=True)
