@@ -14,9 +14,10 @@ class Settings:
     RAGIE_API_KEY = os.environ["RAGIE_API_KEY"]
     GEMINI_API_KEY = os.environ["GOOGLE_API_KEY"]
     TG_API_TOKEN = os.environ["TG_API_TOKEN"]
-    AUTH_LIST = os.environ["AUTH_LIST"].split(",")
+    DATABASE_URL = os.environ["DATABASE_URL"]
     SENTRY_DSN = os.environ.get("SENTRY_DSN")
     REWRITE_PROMPT = False
+    CHAT_IDS = os.environ["CHAT_IDS"].split(",")
 
 
 settings = Settings()
