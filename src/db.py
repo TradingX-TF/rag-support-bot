@@ -24,7 +24,7 @@ sync_engine = create_engine(settings.DATABASE_URL, echo=False)
 Base.metadata.create_all(sync_engine, checkfirst=True)
 
 
-engine = create_async_engine(settings.DATABASE_URL, echo=False)
+engine = create_async_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=True)
 Session = async_sessionmaker(engine)
 
 
