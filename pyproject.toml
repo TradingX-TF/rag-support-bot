@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.14"
 dependencies = [
     "ragie (>=1.4.5,<2.0.0)",
-    "google-genai (>=1.5.0,<1.6.0)",
+    "google-genai (>=1.7.0,<1.8.0)",
     "pytelegrambotapi (>=4.26.0,<5.0.0)",
     "telegramify-markdown (>=0.5.0,<0.6.0)",
     "asyncio (>=3.4.3,<4.0.0)",
