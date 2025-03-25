@@ -12,7 +12,7 @@ Base = declarative_base()
 class UsersOrm(Base):
     __tablename__ = "users"
 
-    user_id = Column(BigInteger, primary_key=True, autoincrement=False)
+    user_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=False)
     first_name: Mapped[str | None]
     last_name: Mapped[str | None]
     username: Mapped[str | None]
