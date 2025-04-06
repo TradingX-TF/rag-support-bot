@@ -1,8 +1,15 @@
+from psycopg import OperationalError
 from sqlalchemy import ARRAY, BigInteger, String, create_engine
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Mapped, mapped_column
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_fixed,
+)
 
 from config import settings
 
@@ -35,11 +42,27 @@ engine = create_async_engine(settings.DATABASE_URL, echo=False, pool_pre_ping=Tr
 Session = async_sessionmaker(engine)
 
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_fixed(3),
+    retry=retry_if_exception_type(
+        (OperationalError),
+    ),
+    reraise=True,
+)
 async def get_user(user_id: int) -> UsersOrm:
     async with Session() as session:
         return await session.get(UsersOrm, user_id)
 
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_fixed(3),
+    retry=retry_if_exception_type(
+        (OperationalError),
+    ),
+    reraise=True,
+)
 async def register_user(  # noqa: PLR0913
     user_id: int,
     first_name: str,
