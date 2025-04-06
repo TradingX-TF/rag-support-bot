@@ -1,4 +1,4 @@
-from psycopg import OperationalError
+from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy import ARRAY, BigInteger, String, create_engine
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
