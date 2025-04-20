@@ -676,32 +676,32 @@ files = [
 
 [[package]]
 name = "limits"
-version = "4.2"
+version = "5.0.0"
 description = "Rate limiting utilities"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "limits-4.2-py3-none-any.whl", hash = "sha256:e6b66078dfb11b971fc3a2a794c598697bce3d9cf7bff242fa0b413875b86dea"},
-    {file = "limits-4.2.tar.gz", hash = "sha256:d602ceae5d6b71063d5f9338904e32d569efaa84a7dd0399cde7ca6ff1a8fc9b"},
+    {file = "limits-5.0.0-py3-none-any.whl", hash = "sha256:9d8bad5a14a96e2a66a8f3bd8deaf9265f0bce9d6cc0606c72eb9f3ed377dffc"},
+    {file = "limits-5.0.0.tar.gz", hash = "sha256:a16f6c60b2cb7ae686e85f630a8e2428f49e06b0d335601ca7e0d756d58db503"},
 ]
 
 [package.dependencies]
 deprecated = ">=1.2"
 packaging = ">=21,<25"
-typing-extensions = "*"
+typing_extensions = "*"
 
 [package.extras]
-all = ["aetcd", "coredis (>=3.4.0,<5)", "emcache (>=0.6.1) ; python_version < \"3.11\"", "emcache (>=1) ; python_version >= \"3.11\" and python_version < \"3.13.0\"", "etcd3", "motor (>=3,<4)", "pymemcache (>3,<5.0.0)", "pymongo (>4.1,<5)", "redis (>3,!=4.5.2,!=4.5.3,<6.0.0)", "redis (>=4.2.0,!=4.5.2,!=4.5.3)"]
-async-etcd = ["aetcd"]
-async-memcached = ["emcache (>=0.6.1) ; python_version < \"3.11\"", "emcache (>=1) ; python_version >= \"3.11\" and python_version < \"3.13.0\""]
+all = ["coredis (>=3.4.0,<5)", "memcachio (>=0.3)", "motor (>=3,<4)", "pymemcache (>3,<5.0.0)", "pymongo (>4.1,<5)", "redis (>3,!=4.5.2,!=4.5.3,<6.0.0)", "redis (>=4.2.0,!=4.5.2,!=4.5.3)", "valkey (>=6)", "valkey (>=6)"]
+async-memcached = ["memcachio (>=0.3)"]
 async-mongodb = ["motor (>=3,<4)"]
 async-redis = ["coredis (>=3.4.0,<5)"]
-etcd = ["etcd3"]
+async-valkey = ["valkey (>=6)"]
 memcached = ["pymemcache (>3,<5.0.0)"]
 mongodb = ["pymongo (>4.1,<5)"]
 redis = ["redis (>3,!=4.5.2,!=4.5.3,<6.0.0)"]
 rediscluster = ["redis (>=4.2.0,!=4.5.2,!=4.5.3)"]
+valkey = ["valkey (>=6)"]
 
 [[package]]
 name = "mistletoe"
@@ -1846,4 +1846,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "e10519fcc5b47257ab376313340cf32538e3908a1d5c3df31f9c5b312c866f5f"
+content-hash = "678a6d643e872c77b08a30f73b9f40f88efeb0264a1f12e9df709adb8af85bdb"
