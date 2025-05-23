@@ -27,8 +27,8 @@ bot = AsyncTeleBot(token=settings.TG_API_TOKEN, disable_web_page_preview=True)
 
 
 client = genai.Client(api_key=settings.GEMINI_API_KEY)
-# gemini-1.5-pro or gemini-2.5-flash-preview-04-17 or gemini-2.5-pro-exp-03-25
-GEMINI_MODEL = "gemini-2.5-flash-preview-04-17"
+# gemini-1.5-pro or gemini-2.5-flash-preview-05-20
+GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 SAFETY_SETTINGS = [
     types.SafetySetting(
         category="HARM_CATEGORY_HARASSMENT",
