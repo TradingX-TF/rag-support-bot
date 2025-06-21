@@ -43,13 +43,14 @@ async def rewrite_prompt(query: str) -> str:
     """
     if await check_ai_quota():
         response = await client.aio.models.generate_content(
-            model="gemini-2.0-flash",
+            model=GEMINI_MODEL,
             contents=query_rewrite_prompt,
             config=types.GenerateContentConfig(
                 system_instruction=QUERY_REWRITE_SYSTEM_INSTRUCTION,
                 safety_settings=SAFETY_SETTINGS,
                 response_mime_type="text/plain",
                 max_output_tokens=8192,
+                thinking_config=types.ThinkingConfig(thinking_budget=-1),
             ),
         )
     if response.text is None:
@@ -121,6 +122,7 @@ async def answer_question(query: str, retrievals: list) -> str:
                 safety_settings=SAFETY_SETTINGS,
                 response_mime_type="text/plain",
                 max_output_tokens=8192,
+                thinking_config=types.ThinkingConfig(thinking_budget=-1),
             ),
         )
     if response.text is None:
