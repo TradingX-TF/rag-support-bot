@@ -662,7 +662,7 @@ wheels = [
 
 [[package]]
 name = "rag-support-bot"
-version = "0.3.0"
+version = "1.0.3"
 source = { virtual = "." }
 dependencies = [
     { name = "aiohttp" },
