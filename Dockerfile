@@ -9,7 +9,8 @@ RUN uv sync \
     --frozen \
     --no-dev \
     --compile-bytecode \
-    --python-preference only-system
+    --python-preference only-system \
+    && uv cache clean
 RUN adduser -D -u 1000 -s /sbin/nologin bot \
     && chown -R bot:bot /app
 USER bot
