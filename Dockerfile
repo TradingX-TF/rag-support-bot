@@ -9,8 +9,7 @@ RUN uv sync \
     --frozen \
     --no-dev \
     --compile-bytecode \
-    --python-preference only-system \
-    && rm -f pyproject.toml uv.lock
+    --python-preference only-system
 RUN adduser -D -u 1000 -s /sbin/nologin bot \
     && chown -R bot:bot /app
 USER bot
