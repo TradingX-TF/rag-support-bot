@@ -863,7 +863,7 @@ dev = [{ name = "python-dotenv", specifier = ">=1.1.1" }]
 
 [[package]]
 name = "ragie"
-version = "1.15.0"
+version = "1.15.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpcore" },
@@ -871,9 +871,9 @@ dependencies = [
     { name = "jsonpath-python" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fc/ce/f1b870aa34955146664fc2c247069a4872b5f46dd1abcf84dea921bd2242/ragie-1.15.0.tar.gz", hash = "sha256:c9e4c3b33ce5b929eb0caae7572cf36cc97865968bc7f86b0c591d6280c89080", size = 95385, upload-time = "2025-12-03T16:45:52.494Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5b/5c/087c4399e78b6971cf966b34b0b41a82eec62bccdb570766185392d5ce16/ragie-1.15.1.tar.gz", hash = "sha256:91025816030998014743f57db9e5eb3b9c3b27bbda93a13e1f92243869a61c5f", size = 99371, upload-time = "2026-01-08T14:17:49.617Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f6/5f/27b0bb4bb4b05ee526ccf083fa95618aaf974b813f22aa2471a4157dd167/ragie-1.15.0-py3-none-any.whl", hash = "sha256:b26c9c74539dfc6cd37f52839c4a36ab9dfc9e1eb48fe12fe7adb41e133a2091", size = 203625, upload-time = "2025-12-03T16:45:50.896Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/4d/9cf2025698a02f4670ffca861ebc2f58284a9cf240d9569bdf8c6dc19e2c/ragie-1.15.1-py3-none-any.whl", hash = "sha256:e0ca03687db923827087600fa5b98ca0dbf9374306bc56e588847cc820cbf205", size = 212567, upload-time = "2026-01-08T14:17:48.574Z" },
 ]
 
 [[package]]
